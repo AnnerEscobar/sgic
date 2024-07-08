@@ -1,0 +1,38 @@
+.identificacion-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+
+.desaparicion-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.investigador-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.input-group, .form-select{
+  width: 35%;
+  margin: 10px;
+}
+
+h5{
+  margin-top: 25px;
+}
+
+.buttons{
+  margin-top: 25px;
+  text-align: left;
+}
+
+.btn{
+  margin: 15px;
+}
+
+
