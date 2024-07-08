@@ -35,4 +35,16 @@ h5{
   margin: 15px;
 }
 
+.messages{
+  width: 35%;
+  font-size: 12px;
+  margin: 0px;
+}
+
+.messages span{
+  padding: 0px 10px 0px;
+}
+
+
+
 

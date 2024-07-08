@@ -5,8 +5,17 @@
   <!-- Select para elegir el tipo de caso -->
   <div class="identificacion-container">
 
-    <select class="form-select"
-    aria-label="Default select example">
+    <div class="messages">
+      <span *ngIf="myForm.controls['caseMP'].getError('required')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">Este campo es requerido</span>
+    </div>
+
+    <div class="messages">
+      <span *ngIf="myForm.controls['caseMP'].getError('required')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">Este campo es requerido</span>
+    </div>
+
+    <select class="form-select" aria-label="Default select example">
       <option selected>Selecciona una opcion</option>
       <option value="1">Alerta Alba-Keneth</option>
       <option value="2">Conflicto</option>
@@ -18,6 +27,14 @@
       <input type="text" class="form-control" formControlName="caseMP">
     </div>
 
+    <div class="messages">
+      <span *ngIf="myForm.controls['caseDEIC'].getError('required')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">Este campo es requerido</span>
+    </div>
+    <div class="messages">
+      <span *ngIf="myForm.controls['alertaNumber'].getError('required')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">Este campo es requerido</span>
+    </div>
     <div class="input-group mb-3">
       <span class="input-group-text">Numero Caso Interno</span>
       <input type="text" class="form-control" formControlName="caseDEIC">
@@ -33,50 +50,50 @@
   <h5>Datos de la desaparicion</h5>
   <hr>
 
-<div class="desaparicion-container">
+  <div class="desaparicion-container">
 
-  <div class="input-group mb-3">
-    <span class="input-group-text">Nombre</span>
-    <input type="text" class="form-control" formControlName="name">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Nombre</span>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Edad</span>
+      <input type="text" class="form-control" formControlName="edad">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Lugar</span>
+      <input type="text" class="form-control" formControlName="lugar">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Coordenadas</span>
+      <input type="text" class="form-control" formControlName="gps">
+    </div>
+
   </div>
 
-  <div class="input-group mb-3">
-    <span class="input-group-text">Edad</span>
-    <input type="text" class="form-control" formControlName="edad">
+  <h5>Datos de la investigacion</h5>
+  <hr>
+
+  <div class="investigador-container">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Investigador</span>
+      <input type="text" class="form-control" formControlName="investigador">
+    </div>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Selecciona un estado</option>
+      <option value="1">Informado</option>
+      <option value="2">Concluido</option>
+    </select>
   </div>
 
-  <div class="input-group mb-3">
-    <span class="input-group-text">Lugar</span>
-    <input type="text" class="form-control" formControlName="lugar">
+  <div class="buttons">
+    <button type="button" class="btn btn-secondary">Cargar Informe</button>
+    <button type="button" class="btn btn-secondary" (click)="onSave()">Guardar</button>
+
   </div>
-
-  <div class="input-group mb-3">
-    <span class="input-group-text">Coordenadas</span>
-    <input type="text" class="form-control" formControlName="gps">
-  </div>
-
-</div>
-
-<h5>Datos de la investigacion</h5>
-<hr>
-
-<div class="investigador-container">
-  <div class="input-group mb-3">
-    <span class="input-group-text">Investigador</span>
-    <input type="text" class="form-control" formControlName="investigador">
-  </div>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Selecciona un estado</option>
-    <option value="1">Informado</option>
-    <option value="2">Concluido</option>
-  </select>
-</div>
-
-<div class="buttons">
-  <button type="button" class="btn btn-secondary">Cargar Informe</button>
-  <button type="button" class="btn btn-secondary" (click)="onSave()">Guardar</button>
-
-</div>
 
 
 </form>

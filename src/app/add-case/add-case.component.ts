@@ -13,11 +13,11 @@ import { Console } from 'console';
 export class AddCaseComponent {
 
   public myForm: FormGroup = this.fb.group({
-    caseMP:['', [Validators.required]],
-    caseDEIC:['', [Validators.required]],
-    alertaNumber:['', [Validators.required]],
+    caseMP:[' ', [Validators.required]],
+    caseDEIC:[' ', [Validators.required]],
+    alertaNumber:[' ', [Validators.required]],
 
-    name:['', [Validators.required]],
+    name:[' ', [Validators.required]],
     edad:['', [Validators.required]],
     lugar:['',[Validators.required]],
     gps:['', [Validators.required]],
@@ -31,6 +31,9 @@ export class AddCaseComponent {
   onSave():void{
   if(this.myForm.invalid) return;
     console.log(this.myForm.value);
+
+    this.myForm.reset();
   }
+
 
 }
