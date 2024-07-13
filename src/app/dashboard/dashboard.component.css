@@ -1,0 +1,19 @@
+.card{
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin: 10px;
+  background-color: whitesmoke;
+}
+
+.tarjetas{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  width: 45%;
+}
+
+.search{
+  width: 50%;
+  margin: 30px auto;
+}
