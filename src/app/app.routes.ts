@@ -1,18 +1,29 @@
-import { LoginComponent } from './auth/login/login.component';
 import { Routes } from '@angular/router';
-import { AddCaseComponent } from './add-case/add-case.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EstadisticasComponent } from './estadisticas/estadisticas.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RegisterComponent } from './auth/register/register.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'agregar-caso', component: AddCaseComponent },
-  { path: 'estadisticas', component: EstadisticasComponent },
-  { path: '**', component: PageNotFoundComponent }
+
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth-routing.module').then(m => m.AuthRoutingModule),
+  },
+
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dash-routing.module').then(m => m.DashRoutingModule),
+  },
+  {
+    path: 'add-case',
+    loadChildren: () => import('./add-case/router-case.module').then(m => m.RouterCaseModule)
+  },
+  {
+    path: 'stadistics',
+    loadChildren: () => import('./estadisticas/router-stadistics.module').then(m => m.RouterStadisticsModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'auth'
+  },
+
+
 
 ];

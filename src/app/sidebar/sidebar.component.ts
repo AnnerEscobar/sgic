@@ -13,8 +13,8 @@ export class SidebarComponent {
 
   items = [
     'Dashboard',
-    'Agregar Caso',
-    'Estadisticas',
+    'add-case',
+    'stadistics',
   ]
 
 }

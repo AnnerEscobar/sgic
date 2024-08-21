@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { AlertaComponent } from './alerta/alerta.component';
-import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import { DashRoutingModule } from './dashboard/dash-routing.module';
+import { RouterCaseModule } from './add-case/router-case.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    DashboardComponent,
     SidebarComponent,
-    AlertaComponent,
-    EstadisticasComponent
+    AuthRoutingModule,
+    DashRoutingModule,
+    RouterCaseModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
