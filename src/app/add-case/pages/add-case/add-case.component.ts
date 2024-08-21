@@ -67,5 +67,4 @@ export class AddCaseComponent implements OnInit {
     this.myForm.reset();
   }
 
-
 }
