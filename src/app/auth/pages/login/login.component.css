@@ -1,0 +1,27 @@
+.formulario{
+  width:30%;
+  border: solid 0.1px black;
+  border-radius: 2%;
+  height: 400px;
+  padding: 20px;
+  margin: auto;
+  margin-top: 15%;
+}
+
+.title{
+  text-align: center;
+}
+
+.button{
+  margin-top: 15px;
+  text-align: center;
+}
+
+.container{
+  padding: 10px;
+}
+
+.otherOptions{
+  margin-top: 15px;
+}
+

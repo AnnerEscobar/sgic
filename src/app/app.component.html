@@ -1,7 +1,7 @@
 
-<div class="container-principal" >
+<div class="container-principal">
   <div class="sidebar-container">
-    <app-sidebar />
+    <app-sidebar *ngIf="finishedAuthCheck()"></app-sidebar>
   </div>
   <div class="container-router">
     <router-outlet />

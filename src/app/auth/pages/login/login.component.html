@@ -1,24 +1,28 @@
-<form [formGroup]="myForm"
-(ngSubmit)="login()"
-  style="width:30%; border: solid 0.1px green; border-radius: 2%; height: 400px; padding: 20px; margin: auto; margin-top: 10%; background-color: whitesmoke;">
+<form [formGroup]="myForm" (ngSubmit)="login()" class="formulario">
 
-  <h4 style="">Inicio de Sesion</h4>
+  <div class="title">
+    <h3>Inicio de Sesion</h3>
+  </div>
 
+  <div class="container">
+    <label class="form-label">Usuario</label>
+    <input type="text"
+    class="form-control"
+    formControlName="email">
+  </div>
 
-  <label for="input" class="form-label">Usuario</label>
-  <input
-  type="text"
-  class="form-control"
-  formControlName="email">
+  <div class="container">
+    <label class="form-label">Password</label>
+    <input type="password"
+    class="form-control"
+    formControlName="password">
+  </div>
 
-  <label for="inputPassword5" class="form-label">Password</label>
-  <input
-  type="password"
-  class="form-control"
-  formControlName="password">
+  <div class="button">
+    <button class="btn btn-secondary" [disabled]="myForm.invalid"> Ingresar</button>
+  </div>
 
-  <button class="btn btn-secondary" style="margin-top: 15px;" [disabled]="myForm.invalid"> Ingresar</button>
-
-  <p>No tienes una cuenta, ingresa <a href="/register" routerLink="register">aqui</a> </p>
-
+<div class="otherOptions">
+  <p>No tienes una cuenta, ingresa <a [routerLink]="['/auth/register']">aqui</a> </p>
+</div>
 </form>
