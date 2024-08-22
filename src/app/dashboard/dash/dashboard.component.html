@@ -1,12 +1,20 @@
-<div class="tarjetas">
-  <div *ngFor="let caso of tiposCaso" class="card">
-    <div class="card-doby">
-      <p>{{caso}}</p>
-      <h3>25</h3>
+<div class="headerDash">
+  <div class="tarjetas">
+    <div *ngFor="let caso of tiposCaso" class="card">
+      <div class="card-doby">
+        <p>{{caso}}</p>
+        <h3>25</h3>
+      </div>
+    </div>
+  </div>
+  <div class="sesion">
+    <h5>{{user()?.name}}</h5>
+    <div class="icon">
+      <button class="btn btn-danger" (click)="closeSesion()">Salir</button>
     </div>
   </div>
 </div>
-<pre>{{user()?.email| json}}</pre>
+
 <hr>
 <div class="search">
   <form class="d-flex" role="search">
@@ -84,5 +92,3 @@
   </tbody>
 
 </table>
-
-

@@ -1,4 +1,8 @@
 
+<h1 *ngIf="!finishedAuthCheck()">
+  Loading
+</h1>
+
 <div class="container-principal">
   <div class="sidebar-container">
     <app-sidebar *ngIf="finishedAuthCheck()"></app-sidebar>

@@ -16,6 +16,8 @@ export class DashboardComponent {
 
   tiposCaso: string[]=['Maltrato', 'Alerta', 'Conflicto', 'Total Casos']
 
-
+  closeSesion(){
+    this.authService.closeSesion();
+  }
 
 }

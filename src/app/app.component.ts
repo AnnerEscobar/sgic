@@ -1,6 +1,6 @@
 import { AuthService } from './auth/services/auth-service.service';
 import { Component, computed, effect, inject } from '@angular/core';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { DashRoutingModule } from './dashboard/dash-routing.module';
@@ -26,8 +26,12 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'aplication';
 
+
+
   private authService = inject(AuthService);
   private router = inject(Router);
+
+
 
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.authService.authStatus() === AuthStatus.checking) {
@@ -37,9 +41,9 @@ export class AppComponent {
   });
 
 
-  public autStatusChangedEffect = effect(() => {
+  public authStatusChangedEffect = effect(() => {
 
-    switch (this.authService.authStatus()) {
+    switch( this.authService.authStatus() ) {
 
       case AuthStatus.checking:
         return;
@@ -55,5 +59,6 @@ export class AppComponent {
     }
 
   });
+
 
 }
