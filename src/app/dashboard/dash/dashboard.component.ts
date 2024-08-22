@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { AuthService } from '../../auth/services/auth-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,11 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  private authService = inject(AuthService);
+  public user = computed (()=> this.authService.currentUser());
+
   tiposCaso: string[]=['Maltrato', 'Alerta', 'Conflicto', 'Total Casos']
+
+
 
 }
