@@ -1,11 +1,10 @@
-
 <h1 *ngIf="!finishedAuthCheck()">
   Loading
 </h1>
 
 <div class="container-principal">
   <div class="sidebar-container">
-    <app-sidebar *ngIf="finishedAuthCheck()"></app-sidebar>
+    <app-sidebar *ngIf="isAunthenticated()"></app-sidebar>
   </div>
   <div class="container-router">
     <router-outlet />

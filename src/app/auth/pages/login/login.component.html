@@ -1,4 +1,5 @@
-<form [formGroup]="myForm" (ngSubmit)="login()" class="formulario">
+<div class="formulario">
+<form [formGroup]="myForm" (ngSubmit)="login()">
 
   <div class="title">
     <h3>Inicio de Sesion</h3>
@@ -26,3 +27,4 @@
   <p>No tienes una cuenta, ingresa <a [routerLink]="['/auth/register']">aqui</a> </p>
 </div>
 </form>
+</div>

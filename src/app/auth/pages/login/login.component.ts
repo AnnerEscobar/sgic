@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent {
   private  fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toastr = inject(ToastrService);
 
   public myForm: FormGroup = this.fb.group({
     email:['bernardo@gmail.com', [Validators.required, Validators.email]],
@@ -28,7 +30,7 @@ export class LoginComponent {
     .subscribe({
       next: ()=> this.router.navigateByUrl('/dashboard'),
       error: (message) =>{
-        Swal.fire('Error', message, 'error')
+        this.toastr.error(message, 'Error')
       }
     })
   }

@@ -7,6 +7,7 @@ import { DashRoutingModule } from './dashboard/dash-routing.module';
 import { RouterCaseModule } from './add-case/router-case.module';
 import { AuthStatus } from './auth/interfaces';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
@@ -40,10 +41,17 @@ export class AppComponent {
     return true;
   });
 
+  public isAunthenticated = computed<boolean>(() => {
+    if (this.authService.authStatus() === AuthStatus.authenticated) {
+      return true;
+    }
+    return false;
+  });
+
 
   public authStatusChangedEffect = effect(() => {
 
-    switch( this.authService.authStatus() ) {
+    switch (this.authService.authStatus()) {
 
       case AuthStatus.checking:
         return;

@@ -1,34 +1,34 @@
-<form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
+<form autocomplete="off" [formGroup]="myForm" (ngSubmit)="CargarCaso()">
   <h5>Identificacion del Caso</h5>
   <hr>
   <!-- Select para elegir el tipo de caso -->
   <div class="identificacion-container">
 
     <div class="messages">
-      <span *ngIf="isValidField('caseMP')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('caseMP')}}</span>
+      <span *ngIf="isValidField('mpNumber')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('mpNumber')}}</span>
     </div>
 
     <div class="messages">
-      <span *ngIf="isValidField('caseMP')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('caseMP')}}</span>
+      <span *ngIf="isValidField('mpNumber')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('mpNumber')}}</span>
     </div>
 
-    <select class="form-select" aria-label="Default select example" formControlName="tipoCaso">
-      <option value="1">Selecciona una opcion</option>
-      <option value="2">Alerta Alba-Keneth</option>
-      <option value="3">Conflicto</option>
-      <option value="4">Maltrato</option>
+    <select class="form-select" aria-label="Default select example" formControlName="caseTipo">
+      <option value="-----">Selecciona una opcion</option>
+      <option value="Alerta Alba-Keneth">Alerta Alba-Keneth</option>
+      <option value="Conflicto">Conflicto</option>
+      <option value="Maltrato">Maltrato</option>
     </select>
 
     <div class="input-group mb-3">
       <span class="input-group-text">Numero Caso MP</span>
-      <input type="text" class="form-control" formControlName="caseMP">
+      <input type="text" class="form-control" formControlName="mpNumber">
     </div>
 
     <div class="messages">
-      <span *ngIf="isValidField('caseDEIC')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('caseDEIC')}}</span>
+      <span *ngIf="isValidField('deicNumber')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('deicNumber')}}</span>
     </div>
     <div class="messages">
       <span *ngIf="isValidField('alertaNumber')" class="form-text text-danger"
@@ -37,7 +37,7 @@
 
     <div class="input-group mb-3">
       <span class="input-group-text">Numero Caso Interno</span>
-      <input type="text" class="form-control" formControlName="caseDEIC">
+      <input type="text" class="form-control" formControlName="deicNumber">
     </div>
 
     <div class="input-group mb-3">
@@ -53,43 +53,42 @@
   <div class="desaparicion-container">
 
     <div class="messages">
-      <span *ngIf="isValidField('name')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('name')}}</span>
+      <span *ngIf="isValidField('desaparecidoName')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('desaparecidoName')}}</span>
     </div>
     <div class="messages">
-      <span *ngIf="isValidField('edad')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('edad')}}</span>
+      <span *ngIf="isValidField('desaparecidoAge')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('desaparecidoAge')}}</span>
     </div>
     <div class="input-group mb-3">
       <span class="input-group-text">Nombre</span>
-      <input type="text" class="form-control" formControlName="name">
+      <input type="text" class="form-control" formControlName="desaparecidoName">
     </div>
 
     <div class="input-group mb-3">
       <span class="input-group-text">Edad</span>
-      <input type="text" class="form-control" formControlName="edad">
+      <input type="text" class="form-control" formControlName="desaparecidoAge">
     </div>
 
     <div class="messages">
-      <span *ngIf="isValidField('lugar')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('lugar')}}</span>
+      <span *ngIf="isValidField('desaparecidoLugar')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('desaparecidoLugar')}}</span>
     </div>
 
     <div class="messages">
-      <span *ngIf="isValidField('gps')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('gps')}}</span>
+      <span *ngIf="isValidField('desaparecidoGps')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('desaparecidoGps')}}</span>
     </div>
 
     <div class="input-group mb-3">
       <span class="input-group-text">Lugar</span>
-      <input type="text" class="form-control" formControlName="lugar">
+      <input type="text" class="form-control" formControlName="desaparecidoLugar">
     </div>
 
     <div class="input-group mb-3">
       <span class="input-group-text">Coordenadas</span>
-      <input type="text" class="form-control" formControlName="gps">
+      <input type="text" class="form-control" formControlName="desaparecidoGps">
     </div>
-
   </div>
 
   <h5>Datos de la investigacion</h5>
@@ -98,30 +97,29 @@
   <div class="investigador-container">
 
     <div class="messages">
-      <span *ngIf="isValidField('investigador')" class="form-text text-danger"
-        style="display: block; margin-top: 5px;">{{getFieldError('investigador')}}</span>
+      <span *ngIf="isValidField('investigadorName')" class="form-text text-danger"
+        style="display: block; margin-top: 5px;">{{getFieldError('investigadorName')}}</span>
     </div>
 
     <div class="messages">
-      <span *ngIf="isValidField('investigador')" class="form-text text-danger"
-        style=" margin-top: 5px;">{{getFieldError('investigador')}}</span>
+      <span *ngIf="isValidField('investigadorName')" class="form-text text-danger"
+        style=" margin-top: 5px;">{{getFieldError('investigadorName')}}</span>
     </div>
 
     <div class="input-group mb-3">
       <span class="input-group-text">Investigador</span>
-      <input type="text" class="form-control" formControlName="investigador">
+      <input type="text" class="form-control" formControlName="investigadorName">
     </div>
 
-    <select class="form-select" aria-label="Default select example" formControlName="estadoCaso">
-      <option value="1">Selecciona un estado</option>
-      <option value="2">Informado</option>
-      <option value="3">Concluido</option>
+    <select class="form-select" aria-label="Default select example" formControlName="investigacionStatus">
+      <option value="------">Selecciona un estado</option>
+      <option value="Informado">Informado</option>
+      <option value="Concluido">Concluido</option>
     </select>
   </div>
 
   <div class="buttons">
-    <button type="button" class="btn btn-secondary">Cargar Informe</button>
-    <button type="button" class="btn btn-secondary" (click)="onSave()">Guardar</button>
+    <button type="submit" class="btn btn-secondary" [disabled]="myForm.invalid">Guardar</button>
   </div>
 
 </form>

@@ -7,10 +7,14 @@
 
 .container-principal{
   display: flex;
+  margin-top: 0;
   height: 100vh;
 }
 
 .container-router{
+width: 100%;
+margin-top: 0;
 flex: 1;
 padding: 20px;
+height: 100%;
 }
