@@ -14,14 +14,14 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-case.component.html',
   styleUrl: './add-case.component.css'
 })
-export class AddCaseComponent implements OnInit {
+export class AddCaseComponent {
 
 
   public myForm: FormGroup = this.fb.group({
     caseTipo: ['1', Validators.required],
     mpNumber: ['M0030-2024-456', [Validators.required]],
     deicNumber: ['DEIC52-2024-08-23-456', [Validators.required]],
-    alertaNumber: ['4561-2024', [Validators.required]],
+    alertaNumber: ['', [Validators.required]],
 
     desaparecidoName: ['Josue Maxia Gomez', [Validators.required]],
     desaparecidoAge: ['25', [Validators.required]],
@@ -39,16 +39,26 @@ export class AddCaseComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
 
-  ) {}
+  ) {
+    this.myForm.get('caseTipo')?.valueChanges.subscribe(value => this.onCaseTipoChange(value));
+  }
 
 
-  ngOnInit(): void {
-    console.log("this formulario es valido: ", this.myForm.valid)
+  onCaseTipoChange(caseTipo: string): void {
+    const alertaNumberControl = this.myForm.get('alertaNumber');
+    if (caseTipo === 'Alerta Alba-Keneth') {
+      alertaNumberControl?.setValidators([Validators.required]);
+      alertaNumberControl?.enable();
+    } else {
+      alertaNumberControl?.clearValidators();
+      alertaNumberControl?.disable();
+    }
+    alertaNumberControl?.updateValueAndValidity();
   }
 
 
   isValidField(field: string): boolean | null {
-   return this.myForm.controls[field].errors && this.myForm.controls[field].touched;
+    return this.myForm.controls[field].errors && this.myForm.controls[field].touched;
   }
 
 
@@ -66,16 +76,102 @@ export class AddCaseComponent implements OnInit {
     return null;
   }
 
-
   CargarCaso() {
     const userId = this.authService.getUserId();
-    const { caseTipo, mpNumber, deicNumber, alertaNumber, desaparecidoName, desaparecidoAge, desaparecidoLugar, desaparecidoGps, investigadorName, investigacionStatus } = this.myForm.value;
-    const body = { caseTipo, mpNumber, deicNumber, alertaNumber, desaparecidoName, desaparecidoAge, desaparecidoLugar, desaparecidoGps, investigadorName, investigacionStatus, userId };
+
+    const {
+      caseTipo,
+      mpNumber,
+      deicNumber,
+      desaparecidoName,
+      desaparecidoAge,
+      desaparecidoLugar,
+      desaparecidoGps,
+      investigadorName,
+      investigacionStatus,
+      alertaNumber,
+    } = this.myForm.value;
+
+    const body: any = {
+      caseTipo,
+      mpNumber,
+      deicNumber,
+      desaparecidoName,
+      desaparecidoAge,
+      desaparecidoLugar,
+      desaparecidoGps,
+      investigadorName,
+      investigacionStatus,
+      userId,
+    };
+
+    if (caseTipo === 'Alerta Alba-Keneth') {
+      body.alertaNumber = alertaNumber;
+    } else {
+      body.alertaNumber = null;
+    }
+
+    this.sgicService.createCaso(body)
+      .subscribe({
+        next: () => {
+          this.toastr.success("Registrado existosamente", 'Success',);
+          this.router.navigateByUrl('/dashboard');
+        },
+        error: (message) => {
+          this.toastr.error(message, "Error",);
+        }
+      });
+
+    console.log('Request Body:', body);
+    console.log("Este es el valor de alertaNumber:", body.alertaNumber);
+  }
+
+
+
+  /* CargarCaso() {
+
+    const userId = this.authService.getUserId();
+
+    const {
+      caseTipo,
+      mpNumber,
+      deicNumber,
+      desaparecidoName,
+      desaparecidoAge,
+      desaparecidoLugar,
+      desaparecidoGps,
+      investigadorName,
+      investigacionStatus,
+      ...rest
+    } = this.myForm.value;
+
+    let alertaNumber = rest;
+    console.log("Este es el valor de rest", rest)
+
+    if (caseTipo !== 'Alerta Alba-Keneth') {
+      alertaNumber = 'NaN';
+    }
+
+    const body: any = {
+      caseTipo,
+      mpNumber,
+      deicNumber,
+      alertaNumber,
+      desaparecidoName,
+      desaparecidoAge,
+      desaparecidoLugar,
+      desaparecidoGps,
+      investigadorName,
+      investigacionStatus,
+      userId,
+    };
+
+
     this.sgicService.createCaso(body)
 
       .subscribe({
         next: () => {
-          this.toastr.success("Registrado existosamente", 'Success', )
+          this.toastr.success("Registrado existosamente", 'Success',)
           this.router.navigateByUrl('/dashboard');
         },
         error: (message) => {
@@ -83,6 +179,7 @@ export class AddCaseComponent implements OnInit {
         }
       });
     console.log('Request Body:', body);
-  }
+    console.log("Este ese el valor de alertaNumber:", alertaNumber);
+  } */
 }
 

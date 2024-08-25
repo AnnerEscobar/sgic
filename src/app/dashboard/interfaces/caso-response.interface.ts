@@ -1,5 +1,5 @@
 
-export interface CreateCaso {
+export interface casoResponse {
 
   caseTipo: string;
 
@@ -7,7 +7,7 @@ export interface CreateCaso {
 
   deicNumber: string;
 
-  alertaNumber?: string;
+  alertaNumber: string;
 
   desaparecidoName: string;
 
@@ -21,6 +21,7 @@ export interface CreateCaso {
 
   investigacionStatus: string;
 
-  userId:string | undefined | null;
+  userId: string;
 
 }
+

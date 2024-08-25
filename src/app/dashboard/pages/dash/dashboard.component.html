@@ -37,16 +37,27 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Anner Ronaldo Escobar Cruz</td>
-      <td>Maltrato</td>
-      <td>11/07/2024</td>
-      <td>M0030-2024-4564</td>
-      <td>DEIC52-2024-07-11-459</td>
-      <td><button class="btn btn-danger">Descargar</button></td>
-      <td><button class="btn btn-success"><i class="bi bi-arrow-down-circle"></i></button></td>
+    <tr *ngFor="let caso of casos; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ caso.desaparecidoName }}</td>
+      <td>{{ caso.caseTipo }}</td>
+      <td>{{ caso.fechaAsignacion || 'No disponible' }}</td> <!-- Agrega fechaAsignacion en el DTO si es necesario -->
+      <td>{{ caso.mpNumber }}</td>
+      <td>{{ caso.deicNumber }}</td>
+      <td>
+        <button class="btn btn-danger">Descargar</button>
+      </td>
+      <td>
+        <button class="btn btn-success">
+          <i class="bi bi-arrow-down-circle"></i>
+        </button>
+      </td>
     </tr>
+  </tbody>
+</table>
+
+<!-- </table>
+
     <tr>
       <th scope="row">2</th>
       <td>Anner Ronaldo Escobar Cruz</td>
@@ -91,4 +102,4 @@
     </tr>
   </tbody>
 
-</table>
+</table> -->
