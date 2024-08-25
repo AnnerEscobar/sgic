@@ -25,4 +25,51 @@
 
 }
 
+/* CSS */
+.sesion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white; /* Color de fondo claro */ /* Sombra suave */
+}
+
+.sesion h5 {
+  margin: 0;
+  padding: 10px;
+  font-size: 16px; /* Color del texto */
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Color de fondo rojo */
+  color: white; /* Color del texto en el botón */
+}
+
+.btn-danger:hover {
+  background-color: #c82333; /* Color de fondo al pasar el cursor */
+}
+
+.bi {
+  margin-right: 5px;
+  font-size: 16px; /* Tamaño del icono */
+}
+
+
 

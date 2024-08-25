@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { SgicDataService } from '../../services/sgic-data.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-add-case',
   standalone: true,
@@ -22,12 +21,11 @@ export class AddCaseComponent {
     mpNumber: ['M0030-2024-456', [Validators.required]],
     deicNumber: ['DEIC52-2024-08-23-456', [Validators.required]],
     alertaNumber: ['', [Validators.required]],
-
     desaparecidoName: ['Josue Maxia Gomez', [Validators.required]],
     desaparecidoAge: ['25', [Validators.required]],
     desaparecidoLugar: ['El trebol', [Validators.required]],
     desaparecidoGps: ['14.613279677819097,-90.53330812361615', [Validators.required]],
-    investigacionStatus: ['1', [Validators.required]],
+    investigacionStatus: [ '1', [Validators.required]],
     investigadorName: ['Anner Escobar', [Validators.required]]
   });
 
@@ -46,7 +44,7 @@ export class AddCaseComponent {
 
   onCaseTipoChange(caseTipo: string): void {
     const alertaNumberControl = this.myForm.get('alertaNumber');
-    if (caseTipo === 'Alerta Alba-Keneth') {
+    if (caseTipo === 'Alerta') {
       alertaNumberControl?.setValidators([Validators.required]);
       alertaNumberControl?.enable();
     } else {
@@ -105,7 +103,7 @@ export class AddCaseComponent {
       userId,
     };
 
-    if (caseTipo === 'Alerta Alba-Keneth') {
+    if (caseTipo === 'Alerta') {
       body.alertaNumber = alertaNumber;
     } else {
       body.alertaNumber = null;

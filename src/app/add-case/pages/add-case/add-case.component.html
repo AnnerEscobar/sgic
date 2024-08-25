@@ -15,8 +15,8 @@
     </div>
 
     <select class="form-select" aria-label="Default select example" formControlName="caseTipo">
-      <option value="-----">Selecciona una opcion</option>
-      <option value="Alerta Alba-Keneth">Alerta Alba-Keneth</option>
+      <option value="1">Selecciona un tipo de caso</option>
+      <option value="Alerta">Alerta</option>
       <option value="Conflicto">Conflicto</option>
       <option value="Maltrato">Maltrato</option>
     </select>
@@ -112,7 +112,7 @@
     </div>
 
     <select class="form-select" aria-label="Default select example" formControlName="investigacionStatus">
-      <option value="------">Selecciona un estado</option>
+      <option value="1">Selecciona el estado del caso</option>
       <option value="Informado">Informado</option>
       <option value="Concluido">Concluido</option>
     </select>
@@ -121,5 +121,4 @@
   <div class="buttons">
     <button type="submit" class="btn btn-secondary" [disabled]="myForm.invalid">Guardar</button>
   </div>
-
 </form>

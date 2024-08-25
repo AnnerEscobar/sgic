@@ -20,8 +20,8 @@ export class LoginComponent {
   private toastr = inject(ToastrService);
 
   public myForm: FormGroup = this.fb.group({
-    email:['bernardo@gmail.com', [Validators.required, Validators.email]],
-    password:['123456789', [Validators.required, Validators.minLength(6)]]
+    email:['anner123escobar@outlook.com', [Validators.required, Validators.email]],
+    password:['12345678', [Validators.required, Validators.minLength(6)]]
   });
 
   login(){
