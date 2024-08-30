@@ -3,7 +3,7 @@
     <div *ngFor="let caso of tiposCaso" class="card">
       <div class="card-doby">
         <p>{{caso}}</p>
-        <h3>{{countByType[caso] || 'NaN'}}</h3>
+        <h3>{{countByType[caso] || 0}}</h3>
       </div>
     </div>
   </div>
@@ -39,6 +39,7 @@
       <th scope="col">Tipo de Caso</th>
       <th scope="col">Caso MP</th>
       <th scope="col">Caso DEIC</th>
+      <th scope="col">Estado</th>
       <th scope="col">Documento</th>
       <th scope="col">Visualizar</th>
       <th scope="col">Caratula</th>
@@ -47,12 +48,13 @@
   <tbody>
     <tr *ngFor="let caso of casos; let i = index">
       <th scope="row">{{ i + 1 }}</th>
-      <td>{{ caso.desaparecidoName }}</td>
+      <td>{{ caso.Name || caso.desaparecidoName }}</td>
       <td>{{ caso.caseTipo }}</td>
       <td>{{ caso.mpNumber }}</td>
       <td>{{ caso.deicNumber }}</td>
+      <td>{{caso.investigacionStatus}}</td>
       <td>
-        <button class="btn btn-danger">Descargar</button>
+        <button class="btn btn-danger"(click)="downloadFile(caso.deicNumber)" >Descargar</button>
       </td>
       <td>
         <button class="btn btn-success">

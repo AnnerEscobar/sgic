@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { SgicDataService } from '../../services/sgic-data.service';
 import { ToastrService } from 'ngx-toastr';
+import { read } from 'fs';
 
 @Component({
   selector: 'app-add-case',
@@ -14,19 +15,22 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './add-case.component.css'
 })
 export class AddCaseComponent {
+  //arrays
+
+  selectedFiles: File[] = [];
 
 
   public myForm: FormGroup = this.fb.group({
-    caseTipo: ['1', Validators.required],
-    mpNumber: ['M0030-2024-456', [Validators.required]],
-    deicNumber: ['DEIC52-2024-08-23-456', [Validators.required]],
+    caseTipo: ['', Validators.required],
+    mpNumber: ['', [Validators.required]],
+    deicNumber: ['', [Validators.required]],
     alertaNumber: ['', [Validators.required]],
-    desaparecidoName: ['Josue Maxia Gomez', [Validators.required]],
-    desaparecidoAge: ['25', [Validators.required]],
-    desaparecidoLugar: ['El trebol', [Validators.required]],
-    desaparecidoGps: ['14.613279677819097,-90.53330812361615', [Validators.required]],
-    investigacionStatus: [ '1', [Validators.required]],
-    investigadorName: ['Anner Escobar', [Validators.required]]
+    Name: ['', [Validators.required]],
+    Age: ['', [Validators.required]],
+    Lugar: ['', [Validators.required]],
+    Gps: ['', [Validators.required]],
+    investigacionStatus: ['', [Validators.required]],
+    files: ['', [Validators.required]]
   });
 
 
@@ -40,7 +44,6 @@ export class AddCaseComponent {
   ) {
     this.myForm.get('caseTipo')?.valueChanges.subscribe(value => this.onCaseTipoChange(value));
   }
-
 
   onCaseTipoChange(caseTipo: string): void {
     const alertaNumberControl = this.myForm.get('alertaNumber');
@@ -71,36 +74,61 @@ export class AddCaseComponent {
           return 'Minimo tres caracteres';
       }
     }
+    console.log("im on the getFieldErrors method")
     return null;
   }
 
+  onFileChange(event: Event){
+    const input = event.target as HTMLInputElement;
+
+    if(input.files && input.files.length >0){
+
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const base64File = reader.result as string;
+        this.myForm.patchValue({files: [base64File]});
+      };
+
+      reader.readAsDataURL(file);
+/*
+      this.selectedFiles = Array.from(input.files);
+      const files = Array.from(input.files).map(file => file.name);
+      this.myForm.patchValue({files}) */
+      }
+    }
+
+
   CargarCaso() {
     const userId = this.authService.getUserId();
+    const investigadorName = this.authService.getInvestigadorName();
 
     const {
       caseTipo,
       mpNumber,
       deicNumber,
-      desaparecidoName,
-      desaparecidoAge,
-      desaparecidoLugar,
-      desaparecidoGps,
-      investigadorName,
+      Name,
+      Age,
+      Lugar,
+      Gps,
       investigacionStatus,
       alertaNumber,
+      files,
     } = this.myForm.value;
 
     const body: any = {
       caseTipo,
       mpNumber,
       deicNumber,
-      desaparecidoName,
-      desaparecidoAge,
-      desaparecidoLugar,
-      desaparecidoGps,
+      Name,
+      Age,
+      Lugar,
+      Gps,
       investigadorName,
       investigacionStatus,
       userId,
+      files,
     };
 
     if (caseTipo === 'Alerta') {
@@ -119,9 +147,6 @@ export class AddCaseComponent {
           this.toastr.error(message, "Error",);
         }
       });
-
-    console.log('Request Body:', body);
-    console.log("Este es el valor de alertaNumber:", body.alertaNumber);
   }
 
 

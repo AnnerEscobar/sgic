@@ -23,6 +23,7 @@ export class AuthService {
   private _currentUser = signal<User | null>(null);
   private _authStatus = signal<AuthStatus>(AuthStatus.checking);
   private userId:string | null = null;
+  private investigador: string | null = null;
 
   //! Al mundo exterior
   public currentUser = computed(() => this._currentUser());
@@ -34,13 +35,17 @@ export class AuthService {
     this._currentUser.set(user);
     localStorage.setItem('token', token);
     localStorage.setItem('userId', user._id);
+    localStorage.setItem('investigadorName', user.name);
     return true
   }
 
-  getUserId():string | null{
+  getUserId(): string | null {
     return localStorage.getItem('userId');
   }
 
+  getInvestigadorName(): string | null {
+    return localStorage.getItem('investigadorName');
+  }
 
 
   login(email: string, password: string): Observable<boolean> {

@@ -3,6 +3,7 @@ import { Component, computed, inject } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth-service.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { ToastrService } from 'ngx-toastr';
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,19 +52,48 @@ export class DashboardComponent {
 
   getCountCasesByType(): void {
     this.dahsboardService.countCasesByTipe().subscribe({
-      next: (data:[any]) => {
+      next: (data: [any]) => {
         // Transformamos el arreglo en un objeto con los tipos de casos como claves
-        this.countByType = data.reduce((acc:any, item:any) => {
+        this.countByType = data.reduce((acc: any, item: any) => {
           acc[item.CaseTipo] = item.count;
           return acc;
         }, {});
-        console.log(this.countByType)
       },
       error: err => {
-        console.log('Error al contar casos por tipo', err);
       }
     });
   }
+
+ /*  downloadFile(deicNumber: string): void {
+    this.dahsboardService.downloadFile(deicNumber).subscribe(
+      (response: Blob) => {
+        const filename = `${deicNumber}.pdf`; // Cambia la extensión si es necesario
+        saveAs(response, filename);
+      },
+      error => {
+        console.error('Error al descargar el archivo', error);
+      }
+    );
+  } */
+
+    downloadFile(deicNumber: string) {
+      this.dahsboardService.downloadFile(deicNumber).subscribe(blob => {
+        // Crear un objeto URL para el Blob
+        const url = window.URL.createObjectURL(blob);
+
+        // Crear un enlace temporal y hacer clic en él para iniciar la descarga
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = deicNumber; // Ajusta el nombre del archivo si es necesario
+        a.click();
+
+        // Liberar el objeto URL
+        window.URL.revokeObjectURL(url);
+      }, error => {
+        console.error('Error al descargar el archivo', error);
+      });
+    }
+}
 
   /*  getCountCasesByType():void{
      this.dahsboardService.countCasesByTipe()
@@ -80,4 +110,3 @@ export class DashboardComponent {
        }
      })
    } */
-}
